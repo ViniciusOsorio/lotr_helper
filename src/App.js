@@ -1,24 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import react, { useState, useEffect } from 'react';
+import { AppWrapper,
+         CardWrapper,
+         TopWrapper,
+         EyeDiv } from './AppStyled';
+import Card from './components/Cards/Card';
 
 function App() {
+
+  const [enemies, setEnemies] = useState([])
+
+  useEffect(() => {
+    setEnemies([{name: 'Teste1', health: 2}, {name: 'teste2', health: 8}, {name: 'teste3', health: 4}])
+  }, [])
+  
+  const generateCards = () => {
+    console.log(enemies)
+    const cards = [];
+    if (enemies.length == 0) {
+      return <Card />
+    } else {
+      enemies.map((enemy) => {
+        cards.push(<Card name={enemy.name} health={enemy.health} />)
+      })
+      return cards;
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppWrapper>
+      <TopWrapper>
+        <EyeDiv />
+      </TopWrapper>
+      <CardWrapper>
+        {generateCards()}
+      </CardWrapper>
+    </AppWrapper>
   );
 }
 
