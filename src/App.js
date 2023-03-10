@@ -4,6 +4,7 @@ import { AppWrapper,
          TopWrapper,
          EyeDiv } from './AppStyled';
 import Card from './components/Cards/Card';
+import Eye from './images/Eye-of-Sauron.jpg';
 
 function App() {
 
@@ -29,7 +30,7 @@ function App() {
   return (
     <AppWrapper>
       <TopWrapper>
-        <EyeDiv />
+        <EyeDiv url={Eye}/>
       </TopWrapper>
       <CardWrapper>
         {generateCards()}
